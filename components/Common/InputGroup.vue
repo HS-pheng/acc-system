@@ -1,6 +1,9 @@
 <template>
-  <div class="my-2">
-    <label :for="name" class="block text-sm font-medium text-gray-700">
+  <div class="m-5">
+    <label
+      :for="name"
+      class="text-left block text-sm font-medium text-gray-700"
+    >
       {{ name }}
     </label>
     <div class="mt-1">
@@ -12,6 +15,7 @@
         :placeholder="name"
         aria-describedby="email-description"
         @change="onChange"
+        autocomplete="off"
       />
     </div>
   </div>
@@ -24,9 +28,9 @@ defineProps<{
   modelValue: string;
 }>();
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(["update:modelValue"]);
 
 const onChange = ($event: any) => {
-  emit('update:modelValue', $event.target.value);
+  emit("update:modelValue", $event.target.value);
 };
 </script>

@@ -38,11 +38,6 @@
                   @click="close"
                 >
                   <span class="sr-only">Close</span>
-                  <Icon
-                    name="ant-design:close-outlined"
-                    class="h-6 w-6"
-                    aria-hidden="true"
-                  />
                 </button>
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">

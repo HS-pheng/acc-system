@@ -5,7 +5,7 @@
         <v-navigation-drawer theme="dark" rail permanent>
           <v-list-item
             nav
-            prepend-avatar="https://picsum.photos/id/237/200/300"
+            prepend-avatar="https://fastly.picsum.photos/id/64/4326/2884.jpg?hmac=9_SzX666YRpR_fOyYStXpfSiJ_edO3ghlSRnH2w09Kg"
           ></v-list-item>
 
           <v-divider></v-divider>
@@ -43,7 +43,50 @@
               value="cash-disbursement"
               @click="onChangeComponent(CashDisbursement)"
             ></v-list-item>
+
+            <v-list-item
+              title="Account Receivable Ledger"
+              value="account-receivable-ledger"
+              @click="onChangeComponent(ARLedger)"
+            ></v-list-item>
+            <v-list-item
+              title="Account Payable Ledger"
+              value="account-payable-ledger"
+              @click="onChangeComponent(APLedger)"
+            ></v-list-item>
+            <v-list-item
+              title="General Ledger"
+              value="general-ledger"
+              @click="onChangeComponent(GeneralLedger)"
+            ></v-list-item>
+            <v-list-item
+              title="Trial Balance"
+              value="1"
+              @click="onChangeComponent(TrialBalance)"
+            ></v-list-item>
+            <v-list-item
+              title="Income Statement"
+              value="2"
+              @click="onChangeComponent(GeneralLedger)"
+            ></v-list-item>
+            <v-list-item
+              title="Statement of Owner's Equity"
+              value="3"
+              @click="onChangeComponent(GeneralLedger)"
+            ></v-list-item>
+            <v-list-item
+              title="Balance Sheet"
+              value="4"
+              @click="onChangeComponent(GeneralLedger)"
+            ></v-list-item>
           </v-list>
+          <template v-slot:append>
+            <div class="pa-2">
+              <v-btn block class="bg-primary" @click="handleCloseTransaction">
+                Close transaction
+              </v-btn>
+            </div>
+          </template>
         </v-navigation-drawer>
         <v-main>
           <v-card class="pa-5">
@@ -64,10 +107,22 @@ const SaleJournal = resolveComponent("SaleJournal");
 const CashReceipt = resolveComponent("CashReceipt");
 const CashDisbursement = resolveComponent("CashDisbursement");
 const Purchase = resolveComponent("Purchase");
+const ARLedger = resolveComponent("LedgersARLedger");
+const APLedger = resolveComponent("LedgersAPLedger");
+const TrialBalance = resolveComponent("TrialBalance");
+const GeneralLedger = resolveComponent("LedgersGeneralLedger");
 
-const currentComponent = shallowRef(SaleJournal);
+const transactionHandler = useTransactionHandler();
+
+const CompanyInfo = resolveComponent("CompanyInfo");
+
+const currentComponent = shallowRef(CompanyInfo);
 
 const onChangeComponent = (component: any) => {
   currentComponent.value = component;
+};
+
+const handleCloseTransaction = () => {
+  transactionHandler.closeTransaction();
 };
 </script>
